@@ -47,4 +47,4 @@ Thumbs.db
 .runtimeconfig.json
 
 # Ignore the local development environment file which contains secrets
-#/src/environments/environment.ts
+/src/environments/environment.ts
