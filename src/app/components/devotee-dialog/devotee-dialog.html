@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Edit Devotee' : 'Add New Devotee' }}</h1>
+<div mat-dialog-content [formGroup]="devoteeForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Devotee Name</mat-label>
+    <input matInput formControlName="name" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phone" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Gotra</mat-label>
+    <input matInput formControlName="gotra">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nakshatra</mat-label>
+    <input matInput formControlName="nakshatra">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!devoteeForm.valid">Save</button>
+</div>

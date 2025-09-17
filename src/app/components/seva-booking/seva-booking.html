@@ -1,0 +1,59 @@
+<div class="booking-container" [formGroup]="bookingForm">
+  <h2>Book a Seva</h2>
+
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Search Devotee</mat-label>
+      <input type="text" matInput formControlName="devotee" [matAutocomplete]="autoDevotee" required>
+      <mat-autocomplete #autoDevotee="matAutocomplete" [displayWith]="displayDevotee">
+        <mat-option *ngFor="let devotee of filteredDevotees$ | async" [value]="devotee">
+          {{ devotee.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-icon-button (click)="openNewDevoteeDialog()" matTooltip="Add New Devotee">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select Seva</mat-label>
+    <mat-select formControlName="sevaId" required>
+      <mat-option *ngFor="let seva of sevas$ | async" [value]="seva.id">
+        {{ seva.name }} - {{ seva.price | currency:'INR' }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Seva Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="sevaDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Payment Method</mat-label>
+    <mat-select formControlName="paymentMethod" required>
+      <mat-option *ngFor="let method of paymentMethods" [value]="method">
+        {{ method.replace('_', ' ') }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Gotra</mat-label>
+    <input matInput formControlName="gotra">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nakshatra</mat-label>
+    <input matInput formControlName="nakshatra">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary"
+          (click)="onSave()"
+          [disabled]="!bookingForm.valid || saving">
+    {{ saving ? 'Saving...' : 'Save' }}
+  </button>
+</div>

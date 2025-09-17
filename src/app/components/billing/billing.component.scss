@@ -1,0 +1,28 @@
+.billing-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+
+  .seva-search {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .billing-summary {
+    margin-top: 20px;
+    text-align: right;
+
+    h2 {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}

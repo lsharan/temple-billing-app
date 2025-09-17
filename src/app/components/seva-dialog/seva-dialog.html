@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Edit Seva' : 'Add New Seva' }}</h1>
+<div mat-dialog-content [formGroup]="sevaForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Seva Name</mat-label>
+    <input matInput formControlName="name" required [errorStateMatcher]="matcher">
+    <mat-error *ngIf="sevaForm.get('name')?.hasError('required')">Seva name is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" formControlName="price" required [errorStateMatcher]="matcher">
+    <mat-error *ngIf="sevaForm.get('price')?.hasError('required')">Price is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Temple Share</mat-label>
+    <input matInput type="number" formControlName="templeShare" required [errorStateMatcher]="matcher">
+    <mat-error *ngIf="sevaForm.get('templeShare')?.hasError('required')">Temple share is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Priest Share</mat-label>
+    <input matInput type="number" formControlName="priestShare" required [errorStateMatcher]="matcher">
+    <mat-error *ngIf="sevaForm.get('priestShare')?.hasError('required')">Priest share is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!sevaForm.valid">Save</button>
+</div>
